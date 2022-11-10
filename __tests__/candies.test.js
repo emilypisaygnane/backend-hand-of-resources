@@ -14,6 +14,17 @@ describe('candies routes', () => {
     expect(res.body.length).toBe(4);
   });
 
+  it('GET /candies/:id returns a single id', async () => {
+    const res = await request(app).get('/candies/1');
+    expect(res.status).toBe(200);
+    expect(res.body).toBe({
+      id: expect.any(String),
+      name: expect.any(String),
+      type: expect.any(String),
+      manufacturer: expect.any(String)
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
